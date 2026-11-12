@@ -19,7 +19,7 @@
             <x-flash-message />
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
-                <div class="mb-4">
+                <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <form method="GET" action="{{ route('loans.index') }}" class="flex flex-wrap gap-2">
                         <input type="text" name="search" value="{{ request('search') }}"
                             placeholder="Cari peminjam atau barang..."
@@ -41,6 +41,10 @@
                                 class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
                         @endif
                     </form>
+                    <a href="{{ route('loans.create') }}"
+                        class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">
+                        + Catat Peminjaman
+                    </a>
                 </div>
 
                 <div class="overflow-x-auto">

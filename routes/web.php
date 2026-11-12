@@ -25,5 +25,5 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('items', ItemController::class)->except(['show']);
-    Route::resource('loans', LoanController::class)->only(['index']);
+    Route::resource('loans', LoanController::class)->only(['index', 'create', 'store']);
 });
