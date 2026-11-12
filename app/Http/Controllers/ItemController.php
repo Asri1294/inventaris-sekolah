@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemRequest; 
+use App\Models\ActivityLog;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -30,5 +32,22 @@ class ItemController extends Controller
         $categories = Category::orderBy('name')->get();
 
         return view('items.index', compact('items', 'categories'));
+    }
+
+        public function create()
+    {
+        $categories = Category::orderBy('name')->get();
+
+        return view('items.create', compact('categories'));
+    }
+
+    public function store(ItemRequest $request)
+    {
+        $item = Item::create($request->validated());
+
+        ActivityLog::record('create_item', "Menambah barang {$item->name}.");
+
+        return redirect()->route('items.index')
+            ->with('success', 'Barang berhasil ditambahkan.');
     }
 }
