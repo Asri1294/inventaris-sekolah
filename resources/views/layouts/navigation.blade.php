@@ -22,6 +22,9 @@
                         <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
                             Barang
                         </x-nav-link>
+                        <x-nav-link :href="route('loans.index')" :active="request()->routeIs('loans.*')">
+                            Peminjaman
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -84,6 +87,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
                     Barang
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('loans.index')" :active="request()->routeIs('loans.*')">
+                    Peminjaman
                 </x-responsive-nav-link>
             @endif
         </div>
