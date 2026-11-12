@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
                             Kategori
                         </x-nav-link>
+                        <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+                            Barang
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -78,6 +81,9 @@
             @if (auth()->user()->isAdmin())
                 <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
                     Kategori
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+                    Barang
                 </x-responsive-nav-link>
             @endif
         </div>
