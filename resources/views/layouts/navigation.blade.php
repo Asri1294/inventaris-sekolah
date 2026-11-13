@@ -25,6 +25,10 @@
                         <x-nav-link :href="route('loans.index')" :active="request()->routeIs('loans.*')">
                             Peminjaman
                         </x-nav-link>
+                        @else
+                        <x-nav-link :href="route('my-loans.index')" :active="request()->routeIs('my-loans.*')">
+                            Peminjaman Saya
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -90,6 +94,11 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('loans.index')" :active="request()->routeIs('loans.*')">
                     Peminjaman
+                </x-responsive-nav-link>
+            {{-- Menampilkan menu selain admin (user) --}}
+                @else 
+                <x-responsive-nav-link :href="route('my-loans.index')" :active="request()->routeIs('my-loans.*')">
+                    Peminjaman Saya
                 </x-responsive-nav-link>
             @endif
         </div>
