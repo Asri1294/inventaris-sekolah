@@ -37,7 +37,7 @@ class LoanController extends Controller
         return view('loans.index', compact('loans', 'statuses'));
     }
 
-        public function create()
+    public function create()
     {
         $users = User::where('role', 'user')->orderBy('name')->get();
 
@@ -53,20 +53,20 @@ class LoanController extends Controller
     {
         $data = $request->validated();
 
-        DB::transaction(function () use ($data) {
-            $item = Item::lockForUpdate()->findOrFail($data['item_id']);
+            DB::transaction(function () use ($data) {
+                $item = Item::lockForUpdate()->findOrFail($data['item_id']);
 
-            if ($item->condition === 'rusak berat') {
-                throw ValidationException::withMessages([
-                    'item_id' => 'Barang rusak berat tidak dapat dipinjam.',
-                ]);
-            }
+                if ($item->condition === 'rusak berat') {
+                    throw ValidationException::withMessages([
+                        'item_id' => 'Barang rusak berat tidak dapat dipinjam.',
+                    ]);
+                }
 
-            if ($data['quantity'] > $item->stock) {
-                throw ValidationException::withMessages([
-                    'quantity' => "Jumlah melebihi stok tersedia ({$item->stock}).",
-                ]);
-            }
+                if ($data['quantity'] > $item->stock) {
+                    throw ValidationException::withMessages([
+                        'quantity' => "Jumlah melebihi stok tersedia ({$item->stock}).",
+                    ]);
+                }
 
             Loan::create($data + ['status' => 'dipinjam']);
 
@@ -80,5 +80,73 @@ class LoanController extends Controller
 
         return redirect()->route('loans.index')
             ->with('success', 'Peminjaman berhasil dicatat.');
+    }
+
+    public function approve(Loan $loan)
+    {
+        try {
+            DB::transaction(function () use ($loan) {
+                $locked = Loan::lockForUpdate()->findOrFail($loan->id);
+
+                if ($locked->status !== 'diajukan') {
+                    throw ValidationException::withMessages([
+                        'status' => 'Pengajuan ini sudah diproses.',
+                    ]);
+                }
+
+                $item = Item::lockForUpdate()->findOrFail($locked->item_id);
+
+                if ($item->condition === 'rusak berat') {
+                    throw ValidationException::withMessages([
+                        'item_id' => 'Barang rusak berat tidak dapat dipinjamkan.',
+                    ]);
+                }
+
+                if ($locked->quantity > $item->stock) {
+                    throw ValidationException::withMessages([
+                        'quantity' => "Stok tidak cukup. Tersedia {$item->stock}, diminta {$locked->quantity}.",
+                    ]);
+                }
+
+                $locked->update(['status' => 'dipinjam']);
+
+                $item->decrement('stock', $locked->quantity);
+
+                ActivityLog::record(
+                    'approve_loan',
+                    "Menyetujui peminjaman {$item->name} sejumlah {$locked->quantity} untuk {$locked->user->name}."
+                );
+            });
+        } catch (ValidationException $e) {
+            return back()->with('error', collect($e->errors())->flatten()->first());
+        }
+
+        return back()->with('success', 'Pengajuan disetujui, stok barang dikurangi.');
+    }
+
+    public function reject(Loan $loan)
+    {
+        try {
+            DB::transaction(function () use ($loan) {
+                $locked = Loan::lockForUpdate()->findOrFail($loan->id);
+
+                if ($locked->status !== 'diajukan') {
+                    throw ValidationException::withMessages([
+                        'status' => 'Pengajuan ini sudah diproses.',
+                    ]);
+                }
+
+                $locked->update(['status' => 'ditolak']);
+
+                ActivityLog::record(
+                    'reject_loan',
+                    "Menolak peminjaman {$locked->item->name} sejumlah {$locked->quantity} dari {$locked->user->name}."
+                );
+            });
+        } catch (ValidationException $e) {
+            return back()->with('error', collect($e->errors())->flatten()->first());
+        }
+
+        return back()->with('success', 'Pengajuan ditolak.');
     }
 }

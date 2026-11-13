@@ -17,6 +17,11 @@
     <div class="py-8">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <x-flash-message />
+            @if (session('error'))
+                <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -58,6 +63,7 @@
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Tanggal Pinjam</th>
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Jatuh Tempo</th>
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Status</th>
+                                <th class="px-4 py-2 text-left font-medium text-gray-600">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
@@ -74,10 +80,36 @@
                                             {{ ucfirst($loan->status) }}
                                         </span>
                                     </td>
+                                    <td class="px-4 py-2">
+                                        @if ($loan->status === 'diajukan')
+                                            <div class="flex gap-2">
+                                                <form method="POST" action="{{ route('loans.approve', $loan) }}"
+                                                    onsubmit="return confirm('Setujui pengajuan ini? Stok akan dikurangi.')">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="rounded-md bg-green-600 px-3 py-1 text-xs font-semibold text-white hover:bg-green-500">
+                                                        Setujui
+                                                    </button>
+                                                </form>
+                                                <form method="POST" action="{{ route('loans.reject', $loan) }}"
+                                                    onsubmit="return confirm('Tolak pengajuan ini?')">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="rounded-md bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-500">
+                                                        Tolak
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @else
+                                            <span class="text-gray-400">-</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                                    <td colspan="8" class="px-4 py-6 text-center text-gray-500">
                                         Belum ada data peminjaman.
                                     </td>
                                 </tr>

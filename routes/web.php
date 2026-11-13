@@ -27,6 +27,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('items', ItemController::class)->except(['show']);
     Route::resource('loans', LoanController::class)->only(['index', 'create', 'store']);
+    Route::patch('loans/{loan}/approve', [LoanController::class, 'approve'])->name('loans.approve');
+    Route::patch('loans/{loan}/reject', [LoanController::class, 'reject'])->name('loans.reject');
 });
 
 Route::middleware(['auth', 'role:user'])
