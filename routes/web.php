@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanReturnController;
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\UserLoanController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::patch('loans/{loan}/reject', [LoanController::class, 'reject'])->name('loans.reject');
     Route::get('loans/{loan}/return', [LoanReturnController::class, 'create'])->name('loans.return.create');
     Route::post('loans/{loan}/return', [LoanReturnController::class, 'store'])->name('loans.return.store');
+    Route::get('activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
 });
 
 Route::middleware(['auth', 'role:user'])
