@@ -28,6 +28,9 @@
                         <x-nav-link :href="route('activity-logs.index')" :active="request()->routeIs('activity-logs.*')">
                             Log Aktivitas
                         </x-nav-link>
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            Pengguna
+                        </x-nav-link>
                         @else
                         <x-nav-link :href="route('my-loans.index')" :active="request()->routeIs('my-loans.*')">
                             Peminjaman Saya
@@ -100,6 +103,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('activity-logs.index')" :active="request()->routeIs('activity-logs.*')">
                     Log Aktivitas
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    Pengguna
                 </x-responsive-nav-link>
             {{-- Menampilkan menu selain admin (user) --}}
                 @else 
