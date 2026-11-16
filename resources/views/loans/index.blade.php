@@ -17,12 +17,7 @@
     <div class="py-8">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <x-flash-message />
-            @if (session('error'))
-                <div class="mb-4 rounded-md bg-red-100 p-4 text-sm text-red-800">
-                    {{ session('error') }}
-                </div>
-            @endif
-
+            
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <form method="GET" action="{{ route('loans.index') }}" class="flex flex-wrap gap-2">
@@ -102,6 +97,11 @@
                                                     </button>
                                                 </form>
                                             </div>
+                                            @elseif (in_array($loan->status, ['dipinjam', 'terlambat']))
+                                            <a href="{{ route('loans.return.create', $loan) }}"
+                                                class="rounded-md bg-indigo-600 px-3 py-1 text-xs font-semibold text-white hover:bg-indigo-500">
+                                                Kembalikan
+                                            </a>
                                         @else
                                             <span class="text-gray-400">-</span>
                                         @endif

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\LoanReturnController;
 use App\Http\Controllers\UserLoanController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('loans', LoanController::class)->only(['index', 'create', 'store']);
     Route::patch('loans/{loan}/approve', [LoanController::class, 'approve'])->name('loans.approve');
     Route::patch('loans/{loan}/reject', [LoanController::class, 'reject'])->name('loans.reject');
+    Route::get('loans/{loan}/return', [LoanReturnController::class, 'create'])->name('loans.return.create');
+    Route::post('loans/{loan}/return', [LoanReturnController::class, 'store'])->name('loans.return.store');
 });
 
 Route::middleware(['auth', 'role:user'])
