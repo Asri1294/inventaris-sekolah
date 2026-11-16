@@ -15,6 +15,8 @@ class LoanController extends Controller
 {
     public function index(Request $request)
     {
+        Loan::markOverdue();
+        
         $statuses = ['diajukan', 'dipinjam', 'dikembalikan', 'terlambat', 'ditolak'];
 
         $loans = Loan::with(['user', 'item'])
