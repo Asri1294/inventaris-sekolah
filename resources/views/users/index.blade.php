@@ -59,6 +59,15 @@
                                     <td class="whitespace-nowrap px-4 py-2 text-right">
                                         <a href="{{ route('users.edit', $user) }}"
                                             class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        @if (! $user->is(auth()->user()))
+                                            <form action="{{ route('users.destroy', $user) }}" method="POST"
+                                                class="inline"
+                                                onsubmit="return confirm('Yakin ingin menghapus akun ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="ml-3 text-red-600 hover:text-red-900">Hapus</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

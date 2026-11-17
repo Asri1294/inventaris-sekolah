@@ -68,4 +68,24 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'Akun berhasil diperbarui.');
     }
+
+    public function destroy(User $user)
+    {
+        if ($user->is(auth()->user())) {
+            return redirect()->route('users.index')
+                ->with('error', 'Anda tidak dapat menghapus akun anda sendiri.');
+        }
+
+        if ($user->loans()->withTrashed()->exists() || $user->activityLogs()->exists()) {
+            return redirect()->route('users.index')
+                ->with('error', 'Akun tidak dapat dihapus karena sudah memiliki riwayat peminjaman atau log aktivitas.');
+        }
+
+        $user->delete();
+
+        ActivityLog::record('delete_user', "Menghapus akun {$user->name} ({$user->email}).");
+
+        return redirect()->route('users.index')
+            ->with('success', 'Akun berhasil dihapus.');
+    }
 }
