@@ -13,6 +13,8 @@ class UserLoanController extends Controller
 {
     public function index()
     {
+        Loan::markOverdue();
+
         $loans = Loan::with('item')
             ->where('user_id', auth()->id())
             ->orderByDesc('created_at')
