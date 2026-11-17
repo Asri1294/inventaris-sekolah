@@ -35,7 +35,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('loans/{loan}/return', [LoanReturnController::class, 'create'])->name('loans.return.create');
     Route::post('loans/{loan}/return', [LoanReturnController::class, 'store'])->name('loans.return.store');
     Route::get('activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
-    Route::resource('users', UserController::class)->only(['index']);
+    Route::resource('users', UserController::class)->except(['show']);
 });
 
 Route::middleware(['auth', 'role:user'])

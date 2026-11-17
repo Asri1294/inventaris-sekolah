@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,5 +26,46 @@ class UserController extends Controller
             ->withQueryString();
 
         return view('users.index', compact('users'));
+    }
+
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    public function store(UserRequest $request)
+    {
+        $user = User::create($request->validated());
+
+        ActivityLog::record('create_user', "Menambah akun {$user->name} ({$user->email}) dengan peran {$user->role}.");
+
+        return redirect()->route('users.index')
+            ->with('success', 'Akun berhasil ditambahkan.');
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        $data = $request->validated();
+
+        if ($user->is(auth()->user()) && $data['role'] !== 'admin') {
+            return back()->withInput()
+                ->with('error', 'Anda tidak dapat menurunkan peran akun Anda sendiri.');
+        }
+
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        ActivityLog::record('update_user', "Mengubah akun {$user->name} ({$user->email}).");
+
+        return redirect()->route('users.index')
+            ->with('success', 'Akun berhasil diperbarui.');
     }
 }

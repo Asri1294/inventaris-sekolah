@@ -26,6 +26,10 @@
                                 class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
                         @endif
                     </form>
+                    <a href="{{ route('users.create') }}"
+                        class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">
+                        + Tambah Akun
+                    </a>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -36,6 +40,7 @@
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Nama</th>
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Email</th>
                                 <th class="px-4 py-2 text-left font-medium text-gray-600">Peran</th>
+                                <th class="px-4 py-2 text-right font-medium text-gray-600">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
@@ -51,10 +56,14 @@
                                             <span class="rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700">Pengguna</span>
                                         @endif
                                     </td>
+                                    <td class="whitespace-nowrap px-4 py-2 text-right">
+                                        <a href="{{ route('users.edit', $user) }}"
+                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="px-4 py-6 text-center text-gray-500">
+                                    <td colspan="5" class="px-4 py-6 text-center text-gray-500">
                                         Belum ada data pengguna.
                                     </td>
                                 </tr>
