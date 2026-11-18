@@ -32,6 +32,9 @@
                             Pengguna
                         </x-nav-link>
                         @else
+                        <x-nav-link :href="route('available-items.index')" :active="request()->routeIs('available-items.*')">
+                            Barang Tersedia
+                        </x-nav-link>
                         <x-nav-link :href="route('my-loans.index')" :active="request()->routeIs('my-loans.*')">
                             Peminjaman Saya
                         </x-nav-link>
@@ -109,6 +112,9 @@
                 </x-responsive-nav-link>
             {{-- Menampilkan menu selain admin (user) --}}
                 @else 
+                <x-responsive-nav-link :href="route('available-items.index')" :active="request()->routeIs('available-items.*')">
+                    Barang Tersedia
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('my-loans.index')" :active="request()->routeIs('my-loans.*')">
                     Peminjaman Saya
                 </x-responsive-nav-link>

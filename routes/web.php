@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoanReturnController;
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\UserLoanController;
+use App\Http\Controllers\UserItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,4 +46,11 @@ Route::middleware(['auth', 'role:user'])
         Route::get('/', [UserLoanController::class, 'index'])->name('index');
         Route::get('/create', [UserLoanController::class, 'create'])->name('create');
         Route::post('/', [UserLoanController::class, 'store'])->name('store');
+});
+
+Route::middleware(['auth', 'role:user'])
+    ->prefix('available-items')
+    ->name('available-items.')
+    ->group(function () {
+        Route::get('/', [UserItemController::class, 'index'])->name('index');
 });

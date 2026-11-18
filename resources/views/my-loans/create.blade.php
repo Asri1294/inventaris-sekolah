@@ -17,7 +17,7 @@
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             <option value="">-- Pilih barang --</option>
                             @foreach ($items as $item)
-                                <option value="{{ $item->id }}" @selected(old('item_id') == $item->id)>
+                                <option value="{{ $item->id }}" @selected(old('item_id', request('item_id')) == $item->id)>
                                     {{ $item->name }} (stok: {{ $item->stock }})
                                 </option>
                             @endforeach
