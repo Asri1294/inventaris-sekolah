@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReturnLoanRequest;
+use App\Http\Requests\LoanReturnRequest;
 use App\Models\ActivityLog;
 use App\Models\Item;
 use App\Models\Loan;
@@ -24,7 +24,7 @@ class LoanReturnController extends Controller
         return view('loans.return', compact('loan'));
     }
 
-    public function store(ReturnLoanRequest $request, Loan $loan)
+    public function store(LoanReturnRequest $request, Loan $loan)
     {
         $data = $request->validated();
         $returnedBroken = $data['condition_on_return'] === 'rusak berat';
