@@ -7,20 +7,35 @@ use App\Models\ActivityLog;
 use App\Models\Item;
 use App\Models\Loan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class UserLoanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         Loan::markOverdue();
 
+        $statuses = ['diajukan', 'dipinjam', 'dikembalikan', 'terlambat', 'ditolak'];
+
         $loans = Loan::with('item')
             ->where('user_id', auth()->id())
+            ->when($request->search, function ($query, $search) {
+                $query->whereHas('item', function ($i) use ($search) {
+                    $i->where(function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%")
+                            ->orWhere('code', 'like', "%{$search}%");
+                    });
+                });
+            })
+            ->when($request->status, function ($query, $status) {
+                $query->where('status', $status);
+            })
             ->orderByDesc('created_at')
-            ->paginate(10);
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('my-loans.index', compact('loans'));
+        return view('my-loans.index', compact('loans', 'statuses'));
     }
 
     public function create()

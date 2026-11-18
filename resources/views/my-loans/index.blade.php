@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+        <x-breadcrumb :items="['Peminjaman Saya' => null]" />
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Peminjaman Saya</h2>
             <a href="{{ route('my-loans.create') }}"
@@ -11,13 +12,31 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md">
-                    {{ session('success') }}
-                </div>
-            @endif
+            <x-flash-message />
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-x-auto">
+            <div class="bg-white p-6 shadow-sm sm:rounded-lg">
+                <form method="GET" action="{{ route('my-loans.index') }}" class="mb-4 flex flex-wrap gap-2">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Cari nama atau kode barang..."
+                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                    <select name="status"
+                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="">Semua Status</option>
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status }}" @selected(request('status') === $status)>
+                                {{ ucfirst($status) }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <x-primary-button>Cari</x-primary-button>
+                    @if (request('search') || request('status'))
+                        <a href="{{ route('my-loans.index') }}"
+                            class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                    @endif
+                </form>
+                <div class="overflow-x-auto">
                 <table class="min-w-full text-sm text-left">
                     <thead class="bg-gray-50 text-gray-600">
                         <tr>
@@ -46,6 +65,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <div class="mt-4">{{ $loans->links() }}</div>
