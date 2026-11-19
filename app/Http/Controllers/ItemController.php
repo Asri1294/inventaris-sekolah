@@ -26,7 +26,7 @@ class ItemController extends Controller
                 $query->where('condition', $condition);
             })
             ->orderBy('name')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         $categories = Category::orderBy('name')->get();

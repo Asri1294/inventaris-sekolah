@@ -33,7 +33,7 @@ class LoanController extends Controller
                 $query->where('status', $status);
             })
             ->orderByDesc('loan_date')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         return view('loans.index', compact('loans', 'statuses'));

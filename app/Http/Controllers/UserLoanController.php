@@ -32,7 +32,7 @@ class UserLoanController extends Controller
                 $query->where('status', $status);
             })
             ->orderByDesc('created_at')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         return view('my-loans.index', compact('loans', 'statuses'));

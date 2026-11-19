@@ -15,26 +15,31 @@
             <x-flash-message />
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
-                <form method="GET" action="{{ route('my-loans.index') }}" class="mb-4 flex flex-wrap gap-2">
-                    <input type="text" name="search" value="{{ request('search') }}"
-                        placeholder="Cari nama atau kode barang..."
-                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <form method="GET" action="{{ route('my-loans.index') }}"
+                    class="mb-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap gap-2">
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            placeholder="Cari nama atau kode barang..."
+                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
-                    <select name="status"
-                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="">Semua Status</option>
-                        @foreach ($statuses as $status)
-                            <option value="{{ $status }}" @selected(request('status') === $status)>
-                                {{ ucfirst($status) }}
-                            </option>
-                        @endforeach
-                    </select>
+                        <select name="status"
+                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="">Semua Status</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status }}" @selected(request('status') === $status)>
+                                    {{ ucfirst($status) }}
+                                </option>
+                            @endforeach
+                        </select>
 
-                    <x-primary-button>Cari</x-primary-button>
-                    @if (request('search') || request('status'))
-                        <a href="{{ route('my-loans.index') }}"
-                            class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                    @endif
+                        <x-primary-button>Cari</x-primary-button>
+                        @if (request('search') || request('status'))
+                            <a href="{{ route('my-loans.index') }}"
+                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                        @endif
+                    </div>
+
+                    <x-per-page-select />
                 </form>
                 <div class="overflow-x-auto">
                 <table class="min-w-full text-sm text-left">
@@ -68,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="mt-4">{{ $loans->links() }}</div>
+            <div class="mt-4">{{ $loans->onEachSide(1)->links() }}</div>
         </div>
     </div>
 </x-app-layout>

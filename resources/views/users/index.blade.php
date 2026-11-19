@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $users->links() }}
+                    {{ $users->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

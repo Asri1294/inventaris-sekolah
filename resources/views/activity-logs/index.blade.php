@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $logs->links() }}
+                    {{ $logs->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

@@ -10,38 +10,42 @@
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <form method="GET" action="{{ route('items.index') }}" class="flex flex-wrap gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Cari nama atau kode barang..."
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <form method="GET" action="{{ route('items.index') }}"
+                        class="flex flex-1 flex-wrap items-center justify-between gap-3 sm:mr-4">
+                        <div class="flex flex-wrap gap-2">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Cari nama atau kode barang..."
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
-                        <select name="category_id"
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">Semua Kategori</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" @selected(request('category_id') == $category->id)>
-                                    {{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                            <select name="category_id"
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">Semua Kategori</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @selected(request('category_id') == $category->id)>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
 
-                        <select name="condition"
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">Semua Kondisi</option>
-                            @foreach (['baik', 'rusak ringan', 'rusak berat'] as $condition)
-                                <option value="{{ $condition }}" @selected(request('condition') === $condition)>
-                                    {{ ucfirst($condition) }}
-                                </option>
-                            @endforeach
-                        </select>
+                            <select name="condition"
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">Semua Kondisi</option>
+                                @foreach (['baik', 'rusak ringan', 'rusak berat'] as $condition)
+                                    <option value="{{ $condition }}" @selected(request('condition') === $condition)>
+                                        {{ ucfirst($condition) }}
+                                    </option>
+                                @endforeach
+                            </select>
 
-                        <x-primary-button>Cari</x-primary-button>
-                        @if (request('search') || request('category_id') || request('condition'))
-                            <a href="{{ route('items.index') }}"
-                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                        @endif
+                            <x-primary-button>Cari</x-primary-button>
+                            @if (request('search') || request('category_id') || request('condition'))
+                                <a href="{{ route('items.index') }}"
+                                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                            @endif
+                        </div>
+
+                        <x-per-page-select />
                     </form>
-
                     <a href="{{ route('items.create') }}"
                         class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">
                         + Tambah Barang
@@ -94,7 +98,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $items->links() }}
+                    {{ $items->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

@@ -20,26 +20,31 @@
             
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <form method="GET" action="{{ route('loans.index') }}" class="flex flex-wrap gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Cari peminjam atau barang..."
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <form method="GET" action="{{ route('loans.index') }}"
+                        class="flex flex-1 flex-wrap items-center justify-between gap-3 sm:mr-4">
+                        <div class="flex flex-wrap gap-2">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Cari peminjam atau barang..."
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
-                        <select name="status"
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">Semua Status</option>
-                            @foreach ($statuses as $status)
-                                <option value="{{ $status }}" @selected(request('status') === $status)>
-                                    {{ ucfirst($status) }}
-                                </option>
-                            @endforeach
-                        </select>
+                            <select name="status"
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">Semua Status</option>
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status }}" @selected(request('status') === $status)>
+                                        {{ ucfirst($status) }}
+                                    </option>
+                                @endforeach
+                            </select>
 
-                        <x-primary-button>Cari</x-primary-button>
-                        @if (request('search') || request('status'))
-                            <a href="{{ route('loans.index') }}"
-                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                        @endif
+                            <x-primary-button>Cari</x-primary-button>
+                            @if (request('search') || request('status'))
+                                <a href="{{ route('loans.index') }}"
+                                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                            @endif
+                        </div>
+
+                        <x-per-page-select />
                     </form>
                     <a href="{{ route('loans.create') }}"
                         class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">
@@ -119,7 +124,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $loans->links() }}
+                    {{ $loans->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

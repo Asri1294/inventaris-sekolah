@@ -23,7 +23,7 @@ class UserItemController extends Controller
                 $query->where('category_id', $categoryId);
             })
             ->orderBy('name')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         $categories = Category::orderBy('name')->get();

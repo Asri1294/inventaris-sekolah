@@ -25,7 +25,6 @@
 
                         <x-per-page-select />
                     </form>
-
                     <a href="{{ route('categories.create') }}"
                         class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">
                         + Tambah Kategori
@@ -72,7 +71,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $categories->links() }}
+                    {{ $categories->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>
