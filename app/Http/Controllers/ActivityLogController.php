@@ -27,7 +27,7 @@ class ActivityLogController extends Controller
                 $query->where('action', $action);
             })
             ->orderByDesc('id')
-            ->paginate(15)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         return view('activity-logs.index', compact('logs', 'actions'));

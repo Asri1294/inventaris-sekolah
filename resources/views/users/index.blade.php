@@ -10,21 +10,26 @@
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <form method="GET" action="{{ route('users.index') }}" class="flex flex-wrap gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Cari nama atau email..."
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <select name="role"
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">Semua Peran</option>
-                            <option value="admin" @selected(request('role') === 'admin')>Admin</option>
-                            <option value="user" @selected(request('role') === 'user')>Pengguna</option>
-                        </select>
-                        <x-primary-button>Cari</x-primary-button>
-                        @if (request('search') || request('role'))
-                            <a href="{{ route('users.index') }}"
-                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                        @endif
+                    <form method="GET" action="{{ route('users.index') }}"
+                        class="flex flex-1 flex-wrap items-center justify-between gap-3 sm:mr-4">
+                        <div class="flex flex-wrap gap-2">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Cari nama atau email..."
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select name="role"
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">Semua Peran</option>
+                                <option value="admin" @selected(request('role') === 'admin')>Admin</option>
+                                <option value="user" @selected(request('role') === 'user')>Pengguna</option>
+                            </select>
+                            <x-primary-button>Cari</x-primary-button>
+                            @if (request('search') || request('role'))
+                                <a href="{{ route('users.index') }}"
+                                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                            @endif
+                        </div>
+
+                        <x-per-page-select />
                     </form>
                     <a href="{{ route('users.create') }}"
                         class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-500">

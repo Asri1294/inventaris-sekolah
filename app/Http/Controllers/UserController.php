@@ -22,7 +22,7 @@ class UserController extends Controller
                 $query->where('role', $role);
             })
             ->orderBy('name')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         return view('users.index', compact('users'));

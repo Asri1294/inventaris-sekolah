@@ -16,7 +16,7 @@ class CategoryController extends Controller
                 $query->where('name', 'like', "%{$search}%");
             })
             ->orderBy('name')
-            ->paginate(10)
+            ->paginate($this->perPage($request))
             ->withQueryString();
 
         return view('categories.index', compact('categories'));

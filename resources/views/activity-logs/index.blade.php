@@ -7,26 +7,31 @@
     <div class="py-8">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
-                <form method="GET" action="{{ route('activity-logs.index') }}" class="mb-4 flex flex-wrap gap-2">
-                    <input type="text" name="search" value="{{ request('search') }}"
-                        placeholder="Cari pengguna atau deskripsi..."
-                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <form method="GET" action="{{ route('activity-logs.index') }}"
+                    class="mb-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap gap-2">
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            placeholder="Cari pengguna atau deskripsi..."
+                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
-                    <select name="action"
-                        class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="">Semua Aksi</option>
-                        @foreach ($actions as $action)
-                            <option value="{{ $action }}" @selected(request('action') === $action)>
-                                {{ $action }}
-                            </option>
-                        @endforeach
-                    </select>
+                        <select name="action"
+                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="">Semua Aksi</option>
+                            @foreach ($actions as $action)
+                                <option value="{{ $action }}" @selected(request('action') === $action)>
+                                    {{ $action }}
+                                </option>
+                            @endforeach
+                        </select>
 
-                    <x-primary-button>Cari</x-primary-button>
-                    @if (request('search') || request('action'))
-                        <a href="{{ route('activity-logs.index') }}"
-                            class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                    @endif
+                        <x-primary-button>Cari</x-primary-button>
+                        @if (request('search') || request('action'))
+                            <a href="{{ route('activity-logs.index') }}"
+                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                        @endif
+                    </div>
+
+                    <x-per-page-select />
                 </form>
 
                 <div class="overflow-x-auto">

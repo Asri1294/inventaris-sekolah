@@ -10,15 +10,20 @@
 
             <div class="bg-white p-6 shadow-sm sm:rounded-lg">
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <form method="GET" action="{{ route('categories.index') }}" class="flex gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Cari nama kategori..."
-                            class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <x-primary-button>Cari</x-primary-button>
-                        @if (request('search'))
-                            <a href="{{ route('categories.index') }}"
-                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
-                        @endif
+                    <form method="GET" action="{{ route('categories.index') }}"
+                        class="flex flex-1 flex-wrap items-center justify-between gap-3 sm:mr-4">
+                        <div class="flex gap-2">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Cari nama kategori..."
+                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <x-primary-button>Cari</x-primary-button>
+                            @if (request('search'))
+                                <a href="{{ route('categories.index') }}"
+                                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                            @endif
+                        </div>
+
+                        <x-per-page-select />
                     </form>
 
                     <a href="{{ route('categories.create') }}"
