@@ -32,10 +32,19 @@
                             @endforeach
                         </select>
 
-                        <x-primary-button>Cari</x-primary-button>
+                        <button type="submit" class="inline-flex items-center gap-1.5 rounded-md bg-gray-800 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-gray-700 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" />
+                            </svg>
+                            
+                        </button>
                         @if (request('search') || request('status'))
-                            <a href="{{ route('my-loans.index') }}"
-                                class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">Reset</a>
+                            <a href="{{ route('my-loans.index') }}" class="inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-xs font-medium text-gray-700 hover:bg-gray-200 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                            
+                            </a>
                         @endif
                     </div>
 
