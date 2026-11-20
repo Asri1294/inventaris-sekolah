@@ -33,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('loans', LoanController::class)->only(['index', 'create', 'store']);
     Route::patch('loans/{loan}/approve', [LoanController::class, 'approve'])->name('loans.approve');
     Route::patch('loans/{loan}/reject', [LoanController::class, 'reject'])->name('loans.reject');
+    route::delete('loans/{loan}', [LoanController::class, 'destroy'])->name('loans.destroy');
     Route::get('loans/{loan}/return', [LoanReturnController::class, 'create'])->name('loans.return.create');
     Route::post('loans/{loan}/return', [LoanReturnController::class, 'store'])->name('loans.return.store');
     Route::get('activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');

@@ -151,4 +151,26 @@ class LoanController extends Controller
 
         return back()->with('success', 'Pengajuan ditolak.');
     }
+
+    public function destroy(Loan $loan)
+    {
+        if (! in_array($loan->status, ['dikembalikan', 'ditolak'])) {
+            return back()->with('error', 'Hanya peminjaman berstatus dikembalikan atau ditolak yang dapat dihapus.');
+        }
+
+        $itemName = $loan->item->name;
+        $userName = $loan->user->name;
+
+        DB::transaction(function () use ($loan) {
+            $loan->returnLog?->delete();
+            $loan->delete();
+        });
+
+        ActivityLog::record(
+            'delete_loan',
+            "Menghapus riwayat peminjaman {$itemName} oleh {$userName}."
+        );
+
+        return back()->with('succsess', 'Riwayat peminjaman dihapus.');
+    }
 }

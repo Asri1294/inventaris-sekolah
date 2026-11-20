@@ -108,7 +108,15 @@
                                                 Kembalikan
                                             </a>
                                         @else
-                                            <span class="text-gray-400">-</span>
+                                            <form method="POST" action="{{ route('loans.destroy', $loan) }}"
+                                                onsubmit="return confirm('Hapus riwayat peminjaman ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="rounded-md bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-500">
+                                                    Hapus
+                                                </button>
+                                            </form>
                                         @endif
                                     </td>
                                 </tr>
