@@ -18,7 +18,7 @@
                             <option value="">-- Pilih barang --</option>
                             @foreach ($items as $item)
                                 <option value="{{ $item->id }}" @selected(old('item_id', request('item_id')) == $item->id)>
-                                    {{ $item->name }} (stok: {{ $item->stock }})
+                                    {{ $item->name }} (stok: {{ number_format($item->stock, 0, ',', '.') }})
                                 </option>
                             @endforeach
                         </select>
