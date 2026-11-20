@@ -4,7 +4,7 @@
     </x-input-label>
     <x-text-input id="code" name="code" type="text" class="mt-1 block w-full"
         :value="old('code', $item->code ?? '')"
-        placeholder="Contoh: BRG-001" />
+        placeholder="Contoh: BRG-001" autofocus />
     <x-input-error :messages="$errors->get('code')" class="mt-2" />
 </div>
 
@@ -14,7 +14,7 @@
     </x-input-label>
     <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
         :value="old('name', $item->name ?? '')"
-        placeholder="Contoh: Bola Basket" autofocus />
+        placeholder="Contoh: Bola Basket" />
     <x-input-error :messages="$errors->get('name')" class="mt-2" />
 </div>
 
