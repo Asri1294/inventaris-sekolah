@@ -56,9 +56,9 @@
                         @forelse ($loans as $loan)
                             <tr class="border-t">
                                 <td class="px-4 py-3">{{ $loan->item->name }}</td>
-                                <td class="px-4 py-3">{{ $loan->quantity }}</td>
-                                <td class="px-4 py-3">{{ $loan->loan_date->format('d-m-Y') }}</td>
-                                <td class="px-4 py-3">{{ $loan->due_date->format('d-m-Y') }}</td>
+                                <td class="px-4 py-3">{{ number_format($loan->quantity, 0, ',', '.') }}</td>
+                                <td class="px-4 py-3">{{ $loan->loan_date->locale('id')->translatedFormat('j M Y') }}</td>
+                                <td class="px-4 py-3">{{ $loan->due_date->locale('id')->translatedFormat('j M Y') }}</td>
                                 <td class="px-4 py-3">{{ ucfirst($loan->status) }}</td>
                             </tr>
                         @empty

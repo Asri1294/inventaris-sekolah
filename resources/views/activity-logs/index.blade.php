@@ -50,7 +50,7 @@
                                 <tr>
                                     <td class="px-4 py-2">{{ $logs->firstItem() + $loop->index }}</td>
                                     <td class="whitespace-nowrap px-4 py-2">
-                                        {{ $log->created_at->timezone('Asia/Makassar')->format('d-m-Y H:i') }}
+                                        {{ $log->created_at->timezone('Asia/Makassar')->locale('id')->translatedFormat('j M Y, H:i') }}
                                     </td>
                                     <td class="px-4 py-2">{{ $log->user?->name ?? '-' }}</td>
                                     <td class="px-4 py-2">

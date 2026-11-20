@@ -22,7 +22,7 @@
                     </div>
                     <div>
                         <dt class="text-gray-500">Jatuh Tempo</dt>
-                        <dd class="font-medium text-gray-900">{{ $loan->due_date->format('d-m-Y') }} ({{ ucfirst($loan->status) }})</dd>
+                        <dd class="font-medium text-gray-900">{{ $loan->due_date->locale('id')->translatedFormat('j M Y') }} ({{ ucfirst($loan->status) }})</dd>
                     </div>
                 </dl>
 

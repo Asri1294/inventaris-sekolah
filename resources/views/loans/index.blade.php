@@ -73,8 +73,8 @@
                                     <td class="px-4 py-2">{{ $loan->user->name }}</td>
                                     <td class="px-4 py-2">{{ $loan->item->name }}</td>
                                     <td class="px-4 py-2">{{ number_format($loan->quantity, 0, ',', '.') }}</td>
-                                    <td class="px-4 py-2">{{ $loan->loan_date->format('d-m-Y') }}</td>
-                                    <td class="px-4 py-2">{{ $loan->due_date->format('d-m-Y') }}</td>
+                                    <td class="px-4 py-2">{{ $loan->loan_date->locale('id')->translatedFormat('j M Y') }}</td>
+                                    <td class="px-4 py-2">{{ $loan->due_date->locale('id')->translatedFormat('j M Y') }}</td>
                                     <td class="px-4 py-2">
                                         <span class="rounded-full px-2 py-1 text-xs font-medium {{ $badge[$loan->status] ?? '' }}">
                                             {{ ucfirst($loan->status) }}
