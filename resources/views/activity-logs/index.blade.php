@@ -3,6 +3,39 @@
         <x-breadcrumb :items="['Log Aktivitas' => null]" />
         <h2 class="text-xl font-semibold leading-tight text-gray-800">Log Aktivitas</h2>
     </x-slot>
+    
+    @php
+        $actionLabels = [
+            // Auth
+            'login'          => 'Masuk',
+            'logout'         => 'Keluar',
+
+            // Peminjaman (Loans)
+            'request_loan'   => 'Ajukan Peminjaman',
+            'create_loan'    => 'Catat Peminjaman',
+            'approve_loan'   => 'Setujui Peminjaman',
+            'verify_loan'    => 'Verifikasi Peminjaman',
+            'reject_loan'    => 'Tolak Peminjaman',
+            'return_loan'    => 'Kembalikan Peminjaman',
+            'verify_return'  => 'Verifikasi Pengembalian',
+            'delete_loan'    => 'Hapus Peminjaman',
+
+            // Kategori (Categories)
+            'create_category' => 'Tambah Kategori',
+            'update_category' => 'Ubah Kategori',
+            'delete_category' => 'Hapus Kategori',
+
+            // Barang (Items)
+            'create_item'    => 'Tambah Barang',
+            'update_item'    => 'Ubah Barang',
+            'delete_item'    => 'Hapus Barang',
+
+            // Pengguna (Users)
+            'create_user'    => 'Tambah Pengguna',
+            'update_user'    => 'Ubah Pengguna',
+            'delete_user'    => 'Hapus Pengguna',
+        ];
+    @endphp
 
     <div class="py-8">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -19,7 +52,7 @@
                             <option value="">Semua Aksi</option>
                             @foreach ($actions as $action)
                                 <option value="{{ $action }}" @selected(request('action') === $action)>
-                                    {{ $action }}
+                                    {{ $actionLabels[$action] ?? ucfirst(str_replace('_', ' ', $action)) }}
                                 </option>
                             @endforeach
                         </select>
@@ -64,7 +97,7 @@
                                     <td class="px-4 py-2">{{ $log->user?->name ?? '-' }}</td>
                                     <td class="px-4 py-2">
                                         <span class="rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800">
-                                            {{ $log->action }}
+                                            {{ $actionLabels[$log->action] ?? ucfirst(str_replace('_', ' ', $log->action)) }}
                                         </span>
                                     </td>
                                     <td class="px-4 py-2">{{ $log->description }}</td>
