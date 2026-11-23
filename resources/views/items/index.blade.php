@@ -41,6 +41,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" />
                                 </svg>
+                                
                             </button>
                             @if (request('search') || request('category_id') || request('condition'))
                                 <a href="{{ route('items.index') }}" class="inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-xs font-medium text-gray-700 hover:bg-gray-200 transition">
@@ -82,14 +83,15 @@
                                     <td class="px-4 py-2">{{ number_format($item->stock, 0, ',', '.') }}</td>
                                     <td class="px-4 py-2">{{ ucfirst($item->condition) }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-right">
-                                        <a href="{{ route('items.edit', $item) }}"
-                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                        <form action="{{ route('items.destroy', $item) }}" method="POST"
-                                            class="inline"
-                                            onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
+                                        <a href="{{ route('items.edit', $item) }}" class="inline-flex items-center rounded bg-indigo-600 px-2.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 transition">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('items.destroy', $item) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="ml-3 text-red-600 hover:text-red-900">Hapus</button>
+                                            <button type="submit" class="inline-flex items-center rounded bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-red-500 transition ml-1">
+                                                Hapus
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
