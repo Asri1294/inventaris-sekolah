@@ -47,6 +47,8 @@ class RegisterRequest extends FormRequest
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'email.unique' => 'Email ini sudah terdaftar.',
+            'email.max' => 'Email maksimal 255 karakter.',
+            'email.lowercase' => 'Email harus ditulis dengan huruf kecil.',
             'password.required' => 'Kata sandi wajib diisi.',
             'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
         ];
