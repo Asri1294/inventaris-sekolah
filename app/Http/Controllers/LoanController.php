@@ -171,6 +171,6 @@ class LoanController extends Controller
             "Menghapus riwayat peminjaman {$itemName} oleh {$userName}."
         );
 
-        return back()->with('succsess', 'Riwayat peminjaman dihapus.');
+        return back()->with('success', 'Riwayat peminjaman dihapus.');
     }
 }
