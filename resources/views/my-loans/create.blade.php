@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+        <x-breadcrumb :items="['Peminjaman Saya' => route('my-loans.index'), 'Ajukan' => null]" />
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Ajukan Peminjaman</h2>
     </x-slot>
 
