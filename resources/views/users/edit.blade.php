@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-breadcrumb :items="['Pengguna' => route('users.index'), 'Ubah' => null]" />
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">Ubah Akun</h2>
+        <x-breadcrumb :items="['Pengguna' => route('users.index'), 'Edit' => null]" />
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">Edit Pengguna</h2>
     </x-slot>
 
     <div class="py-8">
