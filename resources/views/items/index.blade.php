@@ -15,10 +15,10 @@
                         <div class="flex flex-wrap gap-2">
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Cari nama atau kode barang..."
-                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full sm:w-auto rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
                             <select name="category_id"
-                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full sm:w-auto rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option value="">Semua Kategori</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" @selected(request('category_id') == $category->id)>
@@ -28,7 +28,7 @@
                             </select>
 
                             <select name="condition"
-                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full sm:w-auto rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option value="">Semua Kondisi</option>
                                 @foreach (['baik', 'rusak ringan', 'rusak berat'] as $condition)
                                     <option value="{{ $condition }}" @selected(request('condition') === $condition)>

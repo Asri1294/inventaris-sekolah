@@ -25,10 +25,10 @@
                         <div class="flex flex-wrap gap-2">
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Cari peminjam atau barang..."
-                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class=" w-full sm:w-auto rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 
                             <select name="status"
-                                class="rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full sm:w-auto rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option value="">Semua Status</option>
                                 @foreach ($statuses as $status)
                                     <option value="{{ $status }}" @selected(request('status') === $status)>
