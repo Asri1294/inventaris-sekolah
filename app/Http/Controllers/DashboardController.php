@@ -19,7 +19,13 @@ class DashboardController extends Controller
                 'pending' => Loan::where('status', 'diajukan')->count(),
             ];
 
-            return view('dashboard.admin', compact('stats'));
+            // Ambil 3 user dengan jumlah peminjaman terbanyak
+            $topUsers = \App\Models\User::withCount('loans')
+                ->orderByDesc('loans_count')
+                ->take(3)
+                ->get();
+
+            return view('dashboard.admin', compact('stats', 'topUsers'));
         }
 
         $userId = auth()->id();
