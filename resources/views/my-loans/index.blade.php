@@ -10,6 +10,16 @@
         </div>
     </x-slot>
 
+    @php
+        $badge = [
+            'diajukan' => 'bg-yellow-100 text-yellow-800',
+            'dipinjam' => 'bg-blue-100 text-blue-800',
+            'dikembalikan' => 'bg-green-100 text-green-800',
+            'terlambat' => 'bg-red-100 text-red-800',
+            'ditolak' => 'bg-gray-100 text-gray-800',
+        ];
+     @endphp
+
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-flash-message />
@@ -68,7 +78,11 @@
                                 <td class="px-4 py-3">{{ number_format($loan->quantity, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3">{{ $loan->loan_date->locale('id')->translatedFormat('j M Y') }}</td>
                                 <td class="px-4 py-3">{{ $loan->due_date->locale('id')->translatedFormat('j M Y') }}</td>
-                                <td class="px-4 py-3">{{ ucfirst($loan->status) }}</td>
+                                <td class="px-4 py-3">
+                                    <span class="rounded-full px-2 py-1 text-xs font-medium {{ $badge[$loan->status] ?? '' }}">
+                                        {{ ucfirst($loan->status) }}
+                                    </span>
+                                </td>
                             </tr>
                         @empty
                             <tr>
