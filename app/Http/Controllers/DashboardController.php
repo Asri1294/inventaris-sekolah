@@ -19,8 +19,10 @@ class DashboardController extends Controller
                 'pending' => Loan::where('status', 'diajukan')->count(),
             ];
 
-            // Ambil 3 user dengan jumlah peminjaman terbanyak
-            $topUsers = \App\Models\User::withCount('loans')
+            // Ambil 3 pengguna (bukan admin) dengan peminjaman terbanyak
+            $topUsers = \App\Models\User::where('role', 'user')
+                ->whereHas('loans')
+                ->withCount('loans')
                 ->orderByDesc('loans_count')
                 ->take(3)
                 ->get();
