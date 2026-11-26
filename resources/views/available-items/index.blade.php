@@ -4,6 +4,14 @@
         <h2 class="text-xl font-semibold leading-tight text-gray-800">Barang Tersedia</h2>
     </x-slot>
 
+    @php
+        $badge = [
+            'baik' => 'bg-green-100 text-green-800',
+            'rusak ringan' => 'bg-yellow-100 text-yellow-800',
+            'rusak berat' => 'bg-red-100 text-red-800',
+        ];
+    @endphp
+
     <div class="py-8">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <x-flash-message />
@@ -67,7 +75,11 @@
                                     <td class="px-4 py-2">{{ $item->name }}</td>
                                     <td class="px-4 py-2">{{ $item->category->name }}</td>
                                     <td class="px-4 py-2">{{ number_format($item->stock, 0, ',', '.') }}</td>
-                                    <td class="px-4 py-2">{{ ucfirst($item->condition) }}</td>
+                                    <td class="px-4 py-2">
+                                        <span class="rounded-full px-2 py-1 text-xs font-medium {{ $badge[$item->condition] ?? '' }}">
+                                            {{ ucfirst($item->condition) }}
+                                        </span>
+                                    </td>
                                     <td class="whitespace-nowrap px-4 py-2 text-right">
                                         <a href="{{ route('my-loans.create', ['item_id' => $item->id]) }}"
                                             class="rounded-md bg-indigo-600 px-3 py-1 text-xs font-semibold text-white hover:bg-indigo-500">
