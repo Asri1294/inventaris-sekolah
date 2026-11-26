@@ -11,7 +11,7 @@
             <!-- 4 Kartu Statistik -->
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <!-- Card 1: Jumlah Barang -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6 relative">
+                <div class="bg-white shadow-sm border border-gray-200 border-l-4 border-l-indigo-500 rounded-lg p-6 relative">
                     <div class="absolute top-4 right-4 text-gray-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                     </div>
@@ -20,7 +20,7 @@
                 </div>
 
                 <!-- Card 2: Sedang Dipinjam -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6 relative">
+                <div class="bg-white shadow-sm border border-gray-200 border-l-4 border-l-sky-500 rounded-lg p-6 relative">
                     <div class="absolute top-4 right-4 text-indigo-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -29,7 +29,7 @@
                 </div>
 
                 <!-- Card 3: Terlambat -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6 relative">
+                <div class="bg-white shadow-sm border border-gray-200 border-l-4 border-l-red-500 rounded-lg p-6 relative">
                     <div class="absolute top-4 right-4 text-red-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
@@ -38,7 +38,7 @@
                 </div>
 
                 <!-- Card 4: Menunggu Persetujuan -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6 relative">
+                <div class="bg-white shadow-sm border border-gray-200 border-l-4 border-l-amber-500 rounded-lg p-6 relative">
                     <div class="absolute top-4 right-4 text-amber-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -49,7 +49,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Bagian Aksi Cepat -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6">
+                <div class="bg-white shadow-sm border border-gray-200 border-t-4 border-t-indigo-500 rounded-lg p-6">
                     <h3 class="font-semibold text-gray-800 mb-4 border-b pb-2">Aksi Cepat</h3>
                     <div class="grid grid-cols-2 gap-3">
                         <a href="{{ route('items.create') }}" class="flex items-center justify-center gap-2 p-3 bg-indigo-50 text-indigo-700 rounded-md hover:bg-indigo-100 transition font-medium text-sm">
@@ -71,14 +71,15 @@
                     </div>
                 </div>
 
-                <!-- Bagian Peminjam Teraktif (Butuh data dari Controller) -->
-                <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6">
+                <!-- Bagian Peminjam Teraktif (mengambil data dari Controller) -->
+                <div class="bg-white shadow-sm border border-gray-200 border-t-4 border-t-amber-500 rounded-lg p-6">
                     <h3 class="font-semibold text-gray-800 mb-4 border-b pb-2">Peminjam Teraktif</h3>
                     <div class="space-y-3">
                         @forelse ($topUsers as $index => $topUser)
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <span class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs font-bold text-gray-600">{{ $index + 1 }}</span>
+                                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700">{{ mb_strtoupper(mb_substr($topUser->name, 0, 1)) }}</span>
                                     <span class="text-sm font-medium text-gray-800">{{ $topUser->name }}</span>
                                 </div>
                                 <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{{ $topUser->loans_count }} Peminjaman</span>
