@@ -244,6 +244,14 @@ Pengelolaan data menggunakan Eloquent ORM dari Laravel untuk mengatur hubungan a
 - Folder `vendor` dan `node_modules` tidak disertakan dalam repository. Keduanya dapat dibuat kembali dengan menjalankan `composer install` dan `npm install`.
 - Font antarmuka dimuat dari fonts.bunny.net (CDN). Jika koneksi internet terputus, tampilan tetap berjalan dengan font cadangan. Gambar logo, favicon, dan ikon disimpan di dalam proyek.
 
+## Catatan Keamanan
+
+Pemeriksaan paket dijalankan pada 26 Nov 2026.
+
+- `composer audit` melaporkan 5 catatan keamanan pada `laravel/framework`. Perbaikannya hanya tersedia di Laravel 12 ke atas, sedangkan proyek ini memakai Laravel 11. Laravel 11 tidak dinaikkan versinya karena brief meminta Laravel 11 atau lebih baru dan perubahan versi besar berisiko mengubah fitur yang sudah berjalan. Sebelum dipakai di server sungguhan, disarankan naik ke Laravel 12.
+- `npm audit` melaporkan 2 catatan (1 sedang, 1 tinggi) pada `esbuild` dan `vite`. Catatan ini hanya berlaku saat server pengembangan menyala (`npm run dev`). Jangan menjalankan `npm audit fix --force` karena memaksa naik ke versi besar yang dapat merusak tampilan. Hentikan `npm run dev` saat tidak dipakai.
+- `APP_ENV=local` dan `APP_DEBUG=true` hanya untuk pengembangan. Untuk server sungguhan gunakan `APP_ENV=production` dan `APP_DEBUG=false`.
+
 ## Repository
 
 Source code aplikasi dapat diakses melalui GitHub:
