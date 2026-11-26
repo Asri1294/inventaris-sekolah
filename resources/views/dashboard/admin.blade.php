@@ -52,16 +52,20 @@
                 <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-6">
                     <h3 class="font-semibold text-gray-800 mb-4 border-b pb-2">Aksi Cepat</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="{{ route('items.create') }}" class="flex items-center justify-center p-3 bg-indigo-50 text-indigo-700 rounded-md hover:bg-indigo-100 transition font-medium text-sm">
-                            + Tambah Barang
+                        <a href="{{ route('items.create') }}" class="flex items-center justify-center gap-2 p-3 bg-indigo-50 text-indigo-700 rounded-md hover:bg-indigo-100 transition font-medium text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                            Tambah Barang
                         </a>
-                        <a href="{{ route('categories.create') }}" class="flex items-center justify-center p-3 bg-emerald-50 text-emerald-700 rounded-md hover:bg-emerald-100 transition font-medium text-sm">
-                            + Tambah Kategori
+                        <a href="{{ route('categories.create') }}" class="flex items-center justify-center gap-2 p-3 bg-emerald-50 text-emerald-700 rounded-md hover:bg-emerald-100 transition font-medium text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                            Tambah Kategori
                         </a>
-                        <a href="{{ route('loans.create') }}" class="flex items-center justify-center p-3 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100 transition font-medium text-sm">
-                            + Catat Peminjaman
+                        <a href="{{ route('loans.create') }}" class="flex items-center justify-center gap-2 p-3 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100 transition font-medium text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            Catat Peminjaman
                         </a>
-                        <a href="{{ route('users.index') }}" class="flex items-center justify-center p-3 bg-gray-50 text-gray-700 rounded-md hover:bg-gray-200 transition font-medium text-sm border border-gray-200">
+                        <a href="{{ route('users.index') }}" class="flex items-center justify-center gap-2 p-3 bg-gray-50 text-gray-700 rounded-md hover:bg-gray-200 transition font-medium text-sm border border-gray-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                             Kelola Pengguna
                         </a>
                     </div>
