@@ -106,7 +106,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit"
-                                                        class="rounded-md bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-500">
+                                                       class="rounded-md bg-amber-600 px-3 py-1 text-xs font-semibold text-white hover:bg-amber-500">
                                                         Tolak
                                                     </button>
                                                 </form>
