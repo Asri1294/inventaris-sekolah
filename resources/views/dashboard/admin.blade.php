@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             
             <!-- 4 Kartu Statistik -->
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <!-- Card 1: Jumlah Barang -->
                 <div class="bg-white shadow-sm border border-gray-200 border-l-4 border-l-indigo-500 rounded-lg p-6 relative">
                     <div class="absolute top-4 right-4 text-gray-300">
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Bagian Peminjam Teraktif (mengambil data dari Controller) -->
-                <div class="bg-white shadow-sm border border-gray-200 border-t-4 border-t-amber-500 rounded-lg p-6">
+                <div class="bg-white shadow-sm border border-gray-200 border-t-4 border-t-orange-500 rounded-lg p-6">
                     <h3 class="font-semibold text-gray-800 mb-4 border-b pb-2">Peminjam Teraktif</h3>
                     <div class="space-y-3">
                         @forelse ($topUsers as $index => $topUser)
