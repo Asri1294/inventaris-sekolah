@@ -33,7 +33,7 @@
             </div>
 
             <!-- KOLOM KANAN: Form Login/Register -->
-            <div class="w-full lg:w-1/2 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-500">
+            <div class="w-full lg:w-1/2 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-indigo-400">
                 
                 <!-- Kotak Putih Form -->
                 <div class="w-full sm:max-w-md mt-6 px-6 py-8 bg-white shadow-xl overflow-hidden sm:rounded-xl border border-gray-100">
