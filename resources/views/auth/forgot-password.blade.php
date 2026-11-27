@@ -18,7 +18,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Kirim Tautan Atur Ulang Kata Sandi') }}
+                {{ __('Kirim Tautan') }}
             </x-primary-button>
         </div>
     </form>
