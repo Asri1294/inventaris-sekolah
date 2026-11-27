@@ -34,6 +34,9 @@ Aplikasi dibangun menggunakan Laravel 11, Blade, Laravel Breeze, dan MySQL.
 - Perhitungan status keterlambatan berdasarkan tanggal jatuh tempo.
 - Format tanggal dan angka yang disesuaikan dengan standar Indonesia.
 - Tampilan responsif yang mendukung perangkat ponsel, tablet, dan komputer.
+- Halaman Login dan Register tampil dua kolom pada layar lebar: kolom kiri berisi video dan teks sambutan, kolom kanan berisi formulir. Pada layar kecil hanya formulir yang tampil.
+- Tabel data menyediakan pilihan jumlah baris per halaman (5, 10, 25, atau 50).
+- Status peminjaman dan kondisi barang ditandai dengan badge berwarna. Warna tema antarmuka diatur pada `tailwind.config.js` (palet biru yang menggantikan palet indigo bawaan).
 
 ## Teknologi yang Digunakan
 
@@ -170,6 +173,8 @@ npm run dev
 ```
 
 Biarkan terminal ini tetap terbuka selama aplikasi dijalankan.
+
+Catatan: saat `npm install`, mungkin muncul peringatan audit. Peringatan itu tidak menghalangi `npm run dev`. Jangan menjalankan `npm audit fix --force` (lihat bagian Catatan Keamanan).
 
 ### 9. Menjalankan Server Laravel
 
