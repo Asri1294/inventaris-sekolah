@@ -58,7 +58,7 @@
 
                     <div class="flex items-center gap-3">
                         <button type="submit"
-                                class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700">
+                                class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-500">
                             Kirim Pengajuan
                         </button>
                         <a href="{{ route('my-loans.index') }}" class="text-sm text-gray-600 hover:underline">
