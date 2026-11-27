@@ -126,6 +126,8 @@ DB_PASSWORD=
 
 Sesuaikan `DB_USERNAME` dan `DB_PASSWORD` dengan konfigurasi MySQL pada perangkat masing-masing.
 
+Catatan: `DB_COLLATION=utf8mb4_unicode_ci` sudah tertulis di `.env.example` agar cocok untuk MySQL maupun MariaDB (misalnya MariaDB 10.11 pada XAMPP). Collation adalah aturan pembanding huruf pada database. Jika muncul error collation saat `php artisan migrate --seed`, pastikan baris ini ada di file `.env`.
+
 Pastikan konfigurasi bahasa aplikasi menggunakan:
 
 ```dotenv
@@ -174,7 +176,7 @@ npm run dev
 
 Biarkan terminal ini tetap terbuka selama aplikasi dijalankan.
 
-Catatan: saat `npm install`, mungkin muncul peringatan audit. Peringatan itu tidak menghalangi `npm run dev`. Jangan menjalankan `npm audit fix --force` (lihat bagian Catatan Keamanan).
+Catatan: saat `npm install`, mungkin muncul peringatan audit. Peringatan itu tidak menghalangi `npm run dev`. Jangan menjalankan `npm audit fix --force` (lihat bagian [Catatan Keamanan](#catatan-keamanan)).
 
 ### 9. Menjalankan Server Laravel
 
@@ -224,6 +226,7 @@ Akun tersebut merupakan akun pengujian yang dibuat melalui seeder. Untuk penggun
 - Dashboard administrator dan pengguna menampilkan ringkasan informasi yang berbeda sesuai hak akses.
 - Tabel data menyediakan pagination, pencarian, dan filter sesuai halaman.
 - Format tanggal, angka, dan pesan validasi disesuaikan dengan bahasa Indonesia.
+- Zona waktu aplikasi diatur UTC (`APP_TIMEZONE=UTC` pada `.env.example`). Waktu pada halaman Log Aktivitas ditampilkan dalam zona Asia/Makassar (WITA).
 - Halaman tertentu menggunakan breadcrumb sebagai penunjuk lokasi navigasi, Dashboard sengaja tanpa breadcrumb.
 - Halaman utama (`/`) mengarahkan pengguna ke halaman login.
 
